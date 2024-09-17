@@ -1,0 +1,33 @@
+{"Steps": {
+  "Intro": [
+    "Play APIs video",
+    "Define API",
+    "Benefits of APIs (as seen below):"
+  ],
+  "Demos": [
+    {
+      "Description": "Q-Sys Controls NVX/Pull NVX code from Q-Sys/Edit and push NVX code back to Q-Sys",
+      "Function": "nvxDemo"
+    },
+    {
+      "Description": "Webpage will control NVX, via Q-Sys",
+      "Function": "webpageDemo"
+    },
+    {
+      "Description": "Demo: Shure API, mute from Q-Sys, webpage, and SIRI",
+      "Function": "shureDemo"
+    },
+    {
+      "Description": "Pull Data from Q-Sys Reflect",
+      "Function": "reflectDemo"
+    },
+    {
+      "Description": "Upload Reflect Data to Slack",
+      "Function": "slackDemo"
+    },
+    {
+      "Description": "Upload Reflect Data to Google Sheet",
+      "Function": ""
+    }
+  ]
+}}

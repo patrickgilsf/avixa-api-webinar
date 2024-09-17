@@ -1,0 +1,48 @@
+{
+  "name": "avixa-power-of-apis",
+  "version": "1.0.0",
+  "description": "Webinar on harnessing the Power of APIs in AV",
+  "main": "app.js",
+  "type": "module",
+  "license": "AGPL-version-3.0",
+  "private": false,
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": "",
+  "keywords": [],
+  "author": {
+    "name": "Patrick Gilligan",
+    "email": "johnpatrickgilligan@gmail.com",
+    "url": "https://github.com/patrickgilsf"
+  },
+  "contributors": [
+    "@patrickgilsf"
+  ],
+  "scripts": {
+    "start": "mode=runThroughPrompts node app.js",
+    "dev": "clear\n nodemon app.js",
+    "test": "nodemon tests.js",
+    "nvx": "mode=uploadNVX nodemon app.js",
+    "shure": "mode=testShure nodemon app.js"
+  },
+  "dependencies": {
+    "@slack/web-api": "^7.4.0",
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "googleapis": "^144.0.0",
+    "net": "^1.0.2",
+    "nodemon": "^3.1.4",
+    "path": "^0.12.7",
+    "puppeteer": "^23.3.1",
+    "ssh2": "^1.15.0",
+    "url": "^0.11.4"
+  }
+}
