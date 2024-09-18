@@ -1,3 +1,7 @@
+/*
+This is a module that wraps the Q-Sys qrc API in javascript
+QRC API https://q-syshelp.qsc.com/Content/External_Control_APIs/QRC/QRC_Commands.htm
+*/
 import net from 'net';
 
 const timeoutPromise = (timeout) => new Promise((resolve) => setTimeout(resolve, timeout))
@@ -70,7 +74,6 @@ class Core {
 
   //close socket
   closeSocket = () => {
-    // console.log(this);
     return this.client.end();
   };
 
@@ -84,7 +87,6 @@ class Core {
       let client = new net.Socket();
       this.client = client;
       let fullString = "";
-      // let rtn = [];
       client.connect(1710, this.ip, async () => {
 
         client.setEncoding('utf8');
