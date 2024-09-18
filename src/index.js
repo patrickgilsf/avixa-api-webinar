@@ -1,7 +1,18 @@
-import fs from 'fs';
-import Google from '../modules/google.js';
+/*
+The main bulk of the programming for the demo came from this script!
+you can run a script directly with node <folder>/<script>.js, or you can use npm start <script>, along with package.json, in the "scripts" section
+this would be fun project to reverse engineer!
+a couple of API credentials are needed to use finish:
+- mySystem - the name of the system we are filtering for in Reflect
+- shureIp - the ip address of the shure microphone
+*/
+
+//this will handle your api keys, secrets, and non-agnostic data
 import dotenv from 'dotenv';
 dotenv.config();
+//modules imports
+import fs from 'fs';
+import Google from '../modules/google.js';
 import Reflect from '../modules/reflect.js';
 import Slack from '../modules/slack.js';
 import NVX from '../modules/qNVX.js';
@@ -31,7 +42,7 @@ const delay = (timeout) => new Promise((resolve) => setTimeout(resolve, timeout)
 const pullReflectData = async () =>  {
   const pullData = async () => {
     let rtn = [];
-    let mySystem = "3929";
+    let mySystem = process.env.mySystem;
     for (const system of await Reflect.getData("systems")) {
       if (system.name != mySystem) continue;
       for (const peripheral of await Reflect.getData(`systems/${system.id}/items`)) {
@@ -117,7 +128,7 @@ const Demos = {
   shureDemo: async () => {
     console.clear();
     await waitForEnter(`Our next demo will control a Shure mic from my computer`);
-    let shure = new Shure({ip: "192.168.42.156"});
+    let shure = new Shure({ip: process.env.shureIp});
     await waitForEnter(`> press enter to open a web page for the Shure mic`);
     await web.Shure();
     await waitForEnter(`> press enter to turn the mic LEDs off`)
@@ -157,6 +168,7 @@ const Demos = {
     await waitForEnter(`Lets move on to the Google Sheets API.Open a browser and navigate to https://docs.google.com/spreadsheets/d/1dIMaJFSG2662mbNCjn9B-g2zkAr4DB7etLJPYAnUq7M/edit?gid=0#gid=0`);
     await waitForEnter(`watch us upload this sheet with our data from Reflect`);
     let success = await Google.postToGoogle(reflect.google, 'AVIXA!1:1000');
+    console.log(success);
     success ? console.log(`Google Sheet succesfully updated!`) : console.log(`error uploading to google sheet!`)
   }
 

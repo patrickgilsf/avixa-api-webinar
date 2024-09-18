@@ -1,6 +1,16 @@
+/*
+this is the script that allowed me to create and open web pages in Google Chrome for Testing, programatically
+you need several keys to make it work like the demo
+- nvxIp - the IP address of your NVX
+- qsysIp - the IP address of your Q-Sys
+- qsysTp - the name of the touch panel you are trying to open
+- shureIp - the IP address of your Shure microphone
+*/
 import puppeteer from 'puppeteer';
-const nvxIp = "192.168.42.191";
-const qsysIp = "192.168.42.148";
+const nvxIp = process.env.nvxIp;
+const qsysIp = process.env.qsysIp;
+const qsysTp = process.env.qsysTp;
+const shureIp = process.env.shureIp
 
 class Web {
   
@@ -29,7 +39,7 @@ class Web {
   Qsys = async () => {
     if (!this.browser) await this.spinUpBrowser();
     let qsysPage = await this.browser.newPage();
-    await qsysPage.goto(`https://192.168.42.148/uci-viewer/?uci=TP_Demo&file=2.UCI.xml&directory=/designs/current_design/UCIs/`)
+    await qsysPage.goto(`https://${qsysIp}/uci-viewer/?uci=${qsysTp}&file=2.UCI.xml&directory=/designs/current_design/UCIs/`);
   };
 
   Browser = async () => {
@@ -41,7 +51,7 @@ class Web {
   Shure = async () => {
     if (!this.browser) await this.spinUpBrowser();
     let shurePage = await this.browser.newPage();
-    await shurePage.goto(`http://192.168.42.156/#!/portal/config/coverage`);
+    await shurePage.goto(`http://${shureIp}/#!/portal/config/coverage`);
   }
 
   closeSession = async () => this.browser.close();

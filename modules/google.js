@@ -1,12 +1,22 @@
+/*
+This is a simple proof of concept for adding data into the Google APIs
+- data must be formatted as one array for each row
+- you need to have a setup a service account in GCP, and have the following credentials:
+  + svc account email address
+  + svc account API key
+  + spreadsheet you are trying to update
+- last, the service account needs to be given edit access to the sheet
+*/
+
 import {google} from 'googleapis';
 import dotenv from 'dotenv';
 dotenv.config();
 
 //auth workflow
 const auth = new google.auth.JWT(
-  process.env.GOOGLEEMAIL,
+  process.env.googleEmail,
   null,
-  process.env.GOOGLEKEY.split(String.raw`\n`).join('\n'),
+  process.env.googleKey.split(String.raw`\n`).join('\n'),
   [
     "https://www.googleapis.com/auth/spreadsheets"
   ],
@@ -21,7 +31,7 @@ const Google = {
   postToGoogle: async (inputData, range) => {
     return new Promise((resolve, reject) => {
       sheets.spreadsheets.values.update({
-        spreadsheetId: '1dIMaJFSG2662mbNCjn9B-g2zkAr4DB7etLJPYAnUq7M',
+        spreadsheetId: process.env.googleSpreadsheetId,
         range,
         valueInputOption: 'USER_ENTERED',
         includeValuesInResponse: false,

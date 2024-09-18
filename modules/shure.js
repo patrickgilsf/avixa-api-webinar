@@ -1,3 +1,8 @@
+/*
+this was the script that I used to control the Shure mic from the terminal
+this script assumes there is no authentication on the Shure mic
+I ended up passing the ip address authentication in src/index.js...next time I will do it here!
+*/
 import net from 'net';
 
 class Shure {

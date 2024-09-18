@@ -1,5 +1,20 @@
+/*
+this did not make it into the tutorial. Its a script for SSHing into a netgear switch and pulling the config
+you need two secrets in your .env file
+- netgearHostname: the hostname of the switch, found on the command prompt
+- netgearPassword: the password of your switch
+- (if not using admin) netgearUsername: the username of the ssh login
+*/
+
 import { Client } from "ssh2";
 const conn = new Client();
+
+const switchHostname = process.env.netgearHostname;
+
+if (!switchHostname) {
+  console.log(`you need to add the switch's hostname as switchHostname to the .env file to make this work`);
+  return;
+} 
 
 let getConfig = async () => {
 	return new Promise((resolve, reject) => {
@@ -16,7 +31,7 @@ let getConfig = async () => {
 				}).on('data', (data) => {
 					buffer += data.toString('utf8');
 					let rtn = "";
-					if (buffer.search("(HOME-4250-01)#" != -1)) {
+          if (buffer.search(`(${netgearHostname})#` != -1)) {
 
 						let lines = buffer.split('\n');
 						lines.forEach((line) => {
@@ -25,7 +40,7 @@ let getConfig = async () => {
 								case "--More-- or (q)uit":
 									stream.write(' \n');
 									break;
-								case "(HOME-4250-01)#":
+								case `(${netgearHostname})#`:
 									resolve(rtn);
 									break;
 								default:
@@ -61,14 +76,14 @@ let getConfig = async () => {
 			
 			});
 		}).connect({
-			host: 'HOME-4250-01.local',
+			host: `${process.env.netgearHostname}.local`, //or, the ip address of your switch
 			port: 22,
-			username: 'admin',
-			password: '@V0IP!@V0IP!' // Make sure to replace 'password' with the actual password
+			username: process.env.netgearUsername || 'admin',
+			password: process.env.netgearPassword
 		});
 	})
 
 	
 }
 
-console.log(await getConfig());
+export default getConfig;
