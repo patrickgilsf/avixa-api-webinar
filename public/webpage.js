@@ -63,7 +63,7 @@ const port = process.env.port || 3000;
 
 const main = () => {
   app.listen(port, () => {
-    console.log(`navigate to webpage at http://localhost:${port} to see Q-Sys Web page demo`);
+    console.log(`web-based touch panel is now running at http://localhost:${port}`);
   });
 }
 

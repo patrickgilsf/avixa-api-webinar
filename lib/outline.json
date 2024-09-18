@@ -14,7 +14,7 @@
       "Function": "webpageDemo"
     },
     {
-      "Description": "Demo: Shure API, mute from Q-Sys, webpage, and SIRI",
+      "Description": "Demo: Shure API, mute from Q-Sys, webpage",
       "Function": "shureDemo"
     },
     {
@@ -27,7 +27,7 @@
     },
     {
       "Description": "Upload Reflect Data to Google Sheet",
-      "Function": ""
+      "Function": "googleDemo"
     }
   ]
 }}

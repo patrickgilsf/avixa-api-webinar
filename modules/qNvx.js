@@ -9,7 +9,7 @@ const core = new Core({
 
 const NVX = {
   getCode: async () => {
-    console.log('pulling nvx script from Q-Sys core');
+    console.log('>> pulling nvx script from Q-Sys core...');
     const scripts = await core.exportCode();
     return new Promise((resolve, reject) => {
       fs.writeFile('./modules/qNvx.lua', scripts.NVX, (err, res) => {

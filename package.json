@@ -26,7 +26,8 @@
     "@patrickgilsf"
   ],
   "scripts": {
-    "start": "mode=runThroughPrompts node app.js",
+    "start": "mode=playPresentation node app.js",
+    "startFrom": "mode=startFrom node app.js",
     "dev": "clear\n nodemon app.js",
     "test": "nodemon tests.js",
     "nvx": "mode=uploadNVX nodemon app.js",

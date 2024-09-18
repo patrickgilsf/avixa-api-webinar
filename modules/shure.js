@@ -18,8 +18,7 @@ class Shure {
         mic.setEncoding('utf8');
         mic.on('error', (err) => reject(err));
         mic.on('data', async (d) => {
-          // Process incoming data here if necessary
-          // console.log('Received data:', d);
+
         });
         this.mic = mic;
         resolve(mic);
@@ -27,13 +26,13 @@ class Shure {
 
       mic.on('error', (err) => {
         console.log('Connection error:', err);
-        this.mic = null; // Ensure the mic is reset if there was an error
+        this.mic = null; 
         reject(err);
       });
 
       mic.on('close', () => {
         console.log('Connection closed');
-        this.mic = null; // Reset the mic when the connection is closed
+        this.mic = null; 
       });
     });
   };
@@ -68,9 +67,3 @@ class Shure {
 
 export default Shure;
 
-// Example usage:
-let shure = new Shure({ ip: "192.168.42.156" });
-shure.sendMute(true); // Sending mute command
-
-// Optionally, you can close the connection manually when done
-// shure.closeConnection();

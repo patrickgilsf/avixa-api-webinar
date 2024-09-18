@@ -30,12 +30,19 @@ class Web {
     if (!this.browser) await this.spinUpBrowser();
     let qsysPage = await this.browser.newPage();
     await qsysPage.goto(`https://192.168.42.148/uci-viewer/?uci=TP_Demo&file=2.UCI.xml&directory=/designs/current_design/UCIs/`)
-    // await qsysPage.goto(`http://${qsysIp}`);
-    // await qsysPage.waitForSelector('input[name="username"]');
-    // await qsysPage.type('input[name="username"]', process.env.QsysUsername);
-    // await qsysPage.type('input[name="password"]', process.env.QsysPassword);
-    // await qsysPage.click('button[type="submit"]', {waitUntil: 'domcontentloaded'})
   };
+
+  Browser = async () => {
+    if (!this.browser) await this.spinUpBrowser();
+    let browserPage = await this.browser.newPage();
+    await browserPage.goto(`http://localhost:3000`);
+  };
+
+  Shure = async () => {
+    if (!this.browser) await this.spinUpBrowser();
+    let shurePage = await this.browser.newPage();
+    await shurePage.goto(`http://192.168.42.156/#!/portal/config/coverage`);
+  }
 
   closeSession = async () => this.browser.close();
 };
