@@ -38,7 +38,7 @@
     "axios": "^1.12.2",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
-    "googleapis": "^144.0.0",
+    "googleapis": "^174.0.1",
     "net": "^1.0.2",
     "nodemon": "^3.1.4",
     "path": "^0.12.7",
